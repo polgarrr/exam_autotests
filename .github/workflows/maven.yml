@@ -4,56 +4,48 @@
 name: Run Tests
 
 env:
-  OS: macos-latest
+  OS: ubuntu-latest
   
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch
 
 jobs:
-  install_dependency_and_run_test:
-    runs-on: macos-latest
-    
+  preinstall:
+    runs-on: ubuntu-latest
     steps:
-    - name: Set up JDK 15
-      uses: actions/setup-java@v3
-      with:
-        java-version: '15'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-
-    - name: "Download selenoid"
-      run: curl -s https://aerokube.com/cm/bash  | bash
-        
-    - name: "Run selenoid rights"
-      run: chmod +x ./cm
-        
-    - name: "Start selenoid"
-      run: ./cm selenoid start --vnc
-        
-    - name: "Start selenoid-ui"
-      run: ./cm selenoid-ui start
-        
-    - name: "Use main branch"
-      uses: actions/checkout@v1
-        
-    - name: "Run tests"
-      run: mvn clean test
-        
-    - name: "Generate allure-реreport"
-      uses: simple-elf/allure-report-action@master
-      id: allure-report
-      with:
-         allure_results: allure-results
-         gh_pages: reports
-         allure_report: allure-report
-         allure_history: allure-history
+      - name: "download Selenoid"
+        run: curl -s https://aerokube.com/cm/bash | bash
+      - name: "give execution permissions to binary"
+        run: chmod +x ./cm
+      - name: "start Selenoid"
+        run: ./cm selenoid start --vnc
+      - name: "start SelenoidUI"
+        run: ./cm selenoid-ui start
+      - name: "checkout main branch"
+        uses: actions/checkout@v3
+      - name: "set up JDK 11"
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+  tests-and-report:
+    needs: preinstall
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Run tests"
+        run: mvn --batch-mode test
+#       - name: "Generate allure-реreport"
+#         uses: simple-elf/allure-report-action@master
+#         id: allure-report
+#         with:
+#          allure_results: allure-results
+#          gh_pages: reports
+#          allure_report: allure-report
+#          allure_history: allure-history
           
-    - name: "Push allure-report into reports branch"
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PUBLISH_BRANCH: reports
-        PUBLISH_DIR: allure-history
+#       - name: "Push allure-report into reports branch"
+#         uses: peaceiris/actions-reports@v2
+#         env:
+#          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          PUBLISH_BRANCH: reports
+#          PUBLISH_DIR: allure-history
