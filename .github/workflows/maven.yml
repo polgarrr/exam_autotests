@@ -4,21 +4,21 @@
 name: Run Tests
 
 env:
-  OS: macos-latest
+  OS: ubuntu-latest
   
 on:
   workflow_dispatch
 
 jobs:
   preinstall:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: "download Selenoid"
-        run: curl https://aerokube.com/cm/bash  | bash
+        run: curl -s https://aerokube.com/cm/bash | bash
       - name: "give execution permissions to binary"
         run: chmod +x ./cm
       - name: "start Selenoid"
-        run: ./cm selenoid start --vnc --use-drivers
+        run: ./cm selenoid start --vnc
       - name: "start SelenoidUI"
         run: ./cm selenoid-ui start
       - name: "checkout main branch"
@@ -28,12 +28,12 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-  tests-and-report:
-    needs: preinstall
-    runs-on: macos-latest
-    steps:
-      - name: "Run tests"
-        run: mvn clean test    
+#   tests-and-report:
+#     needs: preinstall
+#     runs-on: macos-latest
+#     steps:
+#       - name: "Run tests"
+#         run: mvn clean test    
 #       - name: "Generate allure-реreport"
 #         uses: simple-elf/allure-report-action@master
 #         id: allure-report
