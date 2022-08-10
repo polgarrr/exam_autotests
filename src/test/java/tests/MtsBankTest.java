@@ -10,7 +10,7 @@ public class MtsBankTest extends BaseTest {
 
     @Test
     @DisplayName("Наличие футера на странице")
-    public void checkingFooterOpened() {
+    public void checkFooterOpened() {
         CommonSteps footer = new CommonSteps();
         footer
                 .openHomePage()
@@ -19,7 +19,7 @@ public class MtsBankTest extends BaseTest {
 
     @Test
     @DisplayName("Проверка соцсетей")
-    public void checkingSocMedia() {
+    public void checkSocMedia() {
         CommonSteps socMedia = new CommonSteps();
         socMedia
                 .openHomePage()
@@ -39,7 +39,7 @@ public class MtsBankTest extends BaseTest {
 
     @Test
     @DisplayName("Проверка заголовка pdf документа о третьих лицах - партнерах банка")
-    public void checkingThirdPartiesDoc() throws FileNotFoundException {
+    public void checkThirdPartiesDoc() throws FileNotFoundException {
         CommonSteps checkPThirdPartiesDoc = new CommonSteps();
         checkPThirdPartiesDoc
                 .openHomePage()
