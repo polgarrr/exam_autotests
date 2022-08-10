@@ -33,11 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "ls"
-        run: ls -la | bash
+        run: ls | bash
       - name: "cd"
         run: cd .. | bash
       - name: "ls 2"
-        run: ls -la | bash
+        run: ls | bash
       - name: "Run tests"
         run: mvn --batch-mode test
 #       - name: "Generate allure-реreport"
