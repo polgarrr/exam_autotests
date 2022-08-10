@@ -18,7 +18,7 @@ jobs:
       - name: "give execution permissions to binary"
         run: chmod +x ./cm
       - name: "start Selenoid"
-        run: ./cm selenoid start --vnc
+        run: ./cm selenoid start --vnc --use-drivers
       - name: "start SelenoidUI"
         run: ./cm selenoid-ui start
       - name: "checkout main branch"
