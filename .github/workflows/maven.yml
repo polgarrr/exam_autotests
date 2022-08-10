@@ -1,41 +1,4 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-# name: Run Tests
-
-# env:
-#   OS: ubuntu-latest
-  
-# on:
-#   workflow_dispatch
-
-# jobs:
-#   preinstall:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: "download Selenoid"
-#         run: curl -s https://aerokube.com/cm/bash | bash
-#       - name: "give execution permissions to binary"
-#         run: chmod +x ./cm
-#       - name: "start Selenoid"
-#         run: ./cm selenoid start --vnc
-#       - name: "start SelenoidUI"
-#         run: ./cm selenoid-ui start
-#       - name: "checkout main branch"
-#         uses: actions/checkout@v3
-#       - name: "set up JDK 11"
-#         uses: actions/setup-java@v3
-#         with:
-#           java-version: '11'
-#           distribution: 'temurin'
-#   tests-and-report:
-#     needs: preinstall
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: "Run tests"
-#         run: mvn clean test
-
-name: Run test 
+name: Run tests
 
 env:
   OS: ubuntu-latest
@@ -46,16 +9,16 @@ jobs:
   install_dependency_and_run_test:
     runs-on: ubuntu-latest
     steps:
-      - name: "Скачиваем селенойд"
+      - name: "Скачиваем Selenoid"
         run: curl -s https://aerokube.com/cm/bash  | bash
         
-      - name: "Даем права на запуск селенойда"
+      - name: "Даем права на запуск Selenoid"
         run: chmod +x ./cm
         
-      - name: "Запускаем selenoid"
+      - name: "Запускаем Selenoid"
         run: ./cm selenoid start --vnc
         
-      - name: "Запускаем selenoid-ui"
+      - name: "Запускаем Selenoid-ui"
         run: ./cm selenoid-ui start
         
       - name: "Используем main репозиторий"
