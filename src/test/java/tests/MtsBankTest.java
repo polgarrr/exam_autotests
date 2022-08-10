@@ -8,70 +8,53 @@ import java.io.FileNotFoundException;
 
 public class MtsBankTest extends BaseTest {
 
+    private final CommonSteps steps = new CommonSteps();
     @Test
     @DisplayName("Наличие футера на странице")
     public void checkFooterOpened() {
-        CommonSteps footer = new CommonSteps();
-        footer
-                .openHomePage()
-                .checkFooter();
+        steps.openHomePage().checkFooter();
     }
 
     @Test
     @DisplayName("Проверка соцсетей")
     public void checkSocMedia() {
-        CommonSteps socMedia = new CommonSteps();
-        socMedia
-                .openHomePage()
-                .correctTG()
-                .correctVK()
-                .correctOdnoklassniki();
+        steps.openHomePage().correctTG().correctVK().correctOdnoklassniki();
     }
 
     @Test
     @DisplayName("Проверка названия документа о персональных данных (pdf)")
     public void checkPersonalDataDocumentTitle() throws FileNotFoundException {
-        CommonSteps checkPersDataDoc = new CommonSteps();
-        checkPersDataDoc
-                .openHomePage()
-                .correctPersonalDataDocumentTitle();
+        steps.openHomePage().correctPersonalDataDocumentTitle();
     }
 
     @Test
     @DisplayName("Проверка заголовка pdf документа о третьих лицах - партнерах банка")
     public void checkThirdPartiesDoc() throws FileNotFoundException {
-        CommonSteps checkPThirdPartiesDoc = new CommonSteps();
-        checkPThirdPartiesDoc
-                .openHomePage()
-                .correctThirdPartiesDocumentTitle();
+        steps.openHomePage().correctThirdPartiesDocumentTitle();
     }
 
     @Test
     @DisplayName("Проверка актуальности номера банковской лицензии")
     public void checkBankLicenseNumber() {
-        CommonSteps steps = new CommonSteps();
         steps.licenseCBR();
     }
 
     @Test
     @DisplayName("Проверка англоязычной локализации страницы (отсутствие символов на русском)")
     public void checkEnglishLocalizationColoredBlock() {
-        CommonSteps localization = new CommonSteps();
-        localization.englishLanguageLocalizationPage();
+        steps.englishLanguageLocalizationPage();
     }
 
     @Test
     @DisplayName("Проверка англоязычной локализации страниц согласия на обработку персданных при подписке на новости (отсутствие символов на русском)")
     public void checkEnglishLocalizationTermsOfProcessingPD() {
-        CommonSteps localization = new CommonSteps();
-        localization.termsOfProcessingPersDataPage();
+        steps.termsOfProcessingPersDataPage();
     }
 
     @Test
     @DisplayName("Проверка англоязычной локализации страниц согласия на обработку и получение данных посетителя при подписке на новости (отсутствие символов на русском)")
     public void checkEnglishLocalizationTermsOfProcessingWVD() {
-        CommonSteps localization = new CommonSteps();
-        localization.termsOfProcessingWebVisitorsData();
+        steps.termsOfProcessingWebVisitorsData();
     }
 
 }
