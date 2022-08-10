@@ -10,7 +10,7 @@ on:
   workflow_dispatch
 
 jobs:
-  preinstall:
+  preinstall-job:
     runs-on: ubuntu-latest
     steps:
       - name: "download Selenoid"
