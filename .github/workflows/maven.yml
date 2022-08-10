@@ -10,7 +10,7 @@ on:
   workflow_dispatch
 
 jobs:
-  preinstall-job:
+  preinstall:
     runs-on: ubuntu-latest
     steps:
       - name: "download Selenoid"
@@ -28,12 +28,12 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-#   tests-and-report:
-#     needs: preinstall
-#     runs-on: macos-latest
-#     steps:
-#       - name: "Run tests"
-#         run: mvn clean test    
+  tests-and-report:
+    needs: preinstall
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Run tests"
+        run: mvn clean test    
 #       - name: "Generate allure-реreport"
 #         uses: simple-elf/allure-report-action@master
 #         id: allure-report
