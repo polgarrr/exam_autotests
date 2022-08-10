@@ -32,12 +32,6 @@ jobs:
     needs: preinstall
     runs-on: ubuntu-latest
     steps:
-      - name: "ls"
-        run: ls -la
-      - name: "cd"
-        run: cd ..
-      - name: "ls 2"
-        run: ls -la
       - name: "Run tests"
         run: mvn --batch-mode test
 #       - name: "Generate allure-реreport"
