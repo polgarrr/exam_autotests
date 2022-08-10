@@ -21,8 +21,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+#     - name: Build with Maven
+#       run: mvn -B package --file pom.xml
 
     - name: "Download selenoid"
       run: curl -s https://aerokube.com/cm/bash  | bash
