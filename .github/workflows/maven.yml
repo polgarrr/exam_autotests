@@ -14,7 +14,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: "download Selenoid"
-        run: curl -s https://aerokube.com/cm/bash  | bash
+        run: curl https://aerokube.com/cm/bash  | bash
       - name: "give execution permissions to binary"
         run: chmod +x ./cm
       - name: "start Selenoid"
