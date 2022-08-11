@@ -121,7 +121,7 @@ public class CommonSteps {
         // поиск кириллических символов в основном блоке страницы на английском языке
         Pattern pattern = Pattern.compile("[А-Яа-я]");
         Matcher matcher = pattern.matcher(text);
-        Assertions.assertTrue(matcher.find(), "На англоязычной версии страницы найдены кириллические символы");
+        Assertions.assertFalse(matcher.find(), "На англоязычной версии страницы найдены кириллические символы");
         return this;
     }
 
@@ -133,7 +133,7 @@ public class CommonSteps {
                 .getText();
         Pattern pattern = Pattern.compile("[А-Яа-я]");
         Matcher matcherPersD = pattern.matcher(personalData);
-        Assertions.assertFalse(matcherPersD.find(), "На странице 'personal data' найдены кириллические символы");
+        Assertions.assertTrue(matcherPersD.find(), "На странице 'personal data' найдены кириллические символы");
         return this;
     }
 
@@ -145,7 +145,7 @@ public class CommonSteps {
                 .getText();
         Pattern pattern = Pattern.compile("[А-Яа-я]");
         Matcher matcherPrWVD = pattern.matcher(processingWebVisitorData);
-        Assertions.assertFalse(matcherPrWVD.find(), "На странице 'processing of website visitor's data' найдены кириллические символы");
+        Assertions.assertTrue(matcherPrWVD.find(), "На странице 'processing of website visitor's data' найдены кириллические символы");
         return this;
     }
 }
