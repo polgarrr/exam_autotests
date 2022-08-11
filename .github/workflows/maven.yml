@@ -25,7 +25,9 @@ jobs:
         uses: actions/checkout@v1
         
       - name: "Запускаем тесты"
+        if: always()
         run: mvn clean test
+        continue-on-error: true
         
       - name: "Генерируем аллюр-репорт"
         uses: simple-elf/allure-report-action@master
