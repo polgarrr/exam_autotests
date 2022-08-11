@@ -1,7 +1,7 @@
 package tests;
 
-import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import steps.CommonSteps;
 
 import java.io.FileNotFoundException;
@@ -22,7 +22,7 @@ public class MtsBankTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка названия документа о персональных данных (pdf)")
+    @DisplayName("Проверка заголовка документа о персональных данных (pdf)")
     public void checkPersonalDataDocumentTitle() throws FileNotFoundException {
         steps.openHomePage().correctPersonalDataDocumentTitle();
     }
