@@ -6,6 +6,7 @@ import steps.CommonSteps;
 
 import java.io.FileNotFoundException;
 
+@DisplayName("Тест сьюты для экзамена")
 public class MtsBankTest extends BaseTest {
 
     private final CommonSteps steps = new CommonSteps();
